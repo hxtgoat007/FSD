@@ -1,335 +1,99 @@
-# Welcome.html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>welcome</title>
-</head>
-<script>
-function LogoutValidate(){
- localStorage.clear();
-}
-</script>
-<body>
-<h1>Welcome to Cmrit</h1>
-<form action="/" method="post">
-<button type="submit" onclick="LogoutValidate()">Logout</button>
-</form>
-</body>
-</html>
-
-______________________
-# Success.html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registration</title>
-</head>
-<body>
-<h1>Registration Successful</h1>
-</body>
-</html>
-
-_____________________
-# Server.js
-
-// Importing express module
-const express = require('express');
-const app = express();
-
-app.use(express.json());
-
-// Home page
-app.get('/',
-(req,res) => {
-res.sendFile(__dirname + '/index.html');
-});
-
-// Login page
-app.get('/login',
-(req,res) => {
-res.sendFile(__dirname + '/login.html');
-});
-
-// Register page
-app.get('/register',
-(req,res) => {
-res.sendFile(__dirname + '/register.html');
-});
-
-// Welcome page
-app.get('/welcome',
-(req,res) => {
-res.sendFile(__dirname + '/welcome.html');
-});
-
-// Post routes
-app.post('/',(req,res) => {
-res.redirect('/');
-});
-
-app.post('/login',(req,res) => {
-res.redirect('/login');
-});
-
-app.post('/register',(req,res) => {
-res.redirect('/register');
-});
-
-app.post('/welcome',(req,res) => {
-res.redirect('/welcome');
-});
-
-// Start server
-app.listen(3000,
-() => {
-console.log('Our express server is up on port 3000');
-});
-
-
-_______________________
-# Register.html
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-<title>Register</title>
-body{
- text-align: center;
- font-family: sans-serif;
-}
-h1{
- font-size: 20px;
-}
-table tr td{
- padding-top: 6px;
- padding-bottom: 6px;
-}
-fieldset{
- width:500px;
- text-align:center;
- margin:auto;
-}
-</style>
-<div id="header">
-<h1>Registration</h1>
-</div>
-<div id="content">
-</head>
-<script>
-function validate()
-{
-var fn = frm.fname.value;
-localStorage.setItem("firstname",fn);
-for(x in fn)
-{
-ch = fn.charCodeAt(x);
-if(ch<65 || ch>90 && ch<97 || ch>122)
-{
-alert("Invalid firstname");
-return false;
-}
-}
-var ln = frm.lname.value;
-localStorage.setItem("lastname",ln);
-for(y in ln)
-{
-ch = ln.charCodeAt(y);
-if(ch<65 || ch>90 && ch<97 || ch>122)
-{
-alert("Invalid lastname");
-return false;
-}
-}
-var phn = frm.phone.value;
-localStorage.setItem("phone",phn);
-var lenp = phn.length;
-if(lenp!==10)
-{
-alert("Phone no should be exactly 10 digits");
-return false;
-}
-var pwd1 = frm.pwd.value;
-localStorage.setItem("password",pwd1);
-var pwdl = pwd1.length;
-if(pwdl%2===1)
-{
-alert("Password should contain even number of characters");
-return false;
-}
-if(pwdl > 8)
-{
-alert("Password should not exceed 8 digits");
-return false;
-}
-var reg = /^[a-zA-Z][a-zA-Z0-9\.\-]+@[a-zA-Z]+(\.[a-z]{2,8})(\.[a-z]{2,8})?$/;
-var mail = frm.mailid.value;
-localStorage.setItem("email",mail);
-if(reg.test(mail))
-{
-alert("Registration Successful!!");
-}
-else
-{
-alert("Invalid email");
-return false;
-}
-return true;
-}
-</script>
-<div id="container">
-<body>
-<center>
-<form name="frm" method="POST" action="/login" onSubmit="return validate()">
-<fieldset align="center">
-<table align="center">
-<tr>
-<td>First Name :</td>
-<td><input type="text" name="fname" size="50" required></td>
-</tr>
-<tr>
-<td>Last Name :</td>
-<td><input type="text" name="lname" size="50" required></td>
-</tr>
-<tr>
-<td>Phone No :</td>
-<td><input type="text" name="phone" size="50" required></td>
-</tr>
-<tr>
-<td>Mail id :</td>
-<td><input type="email" name="mailid" size="50" required></td>
-</tr>
-<tr>
-<td>Gender :</td>
-<td>
-Male <input type="radio" name="gender" value="male">
-Female <input type="radio" name="gender" value="female">
-</td>
-</tr>
-<tr>
-<td>DOB :</td>
-<td><input type="date" name="dob" size="50" required></td>
-</tr>
-<tr>
-<td>Username :</td>
-<td><input type="text" name="uname" size="50" required></td>
-</tr>
-<tr>
-<td>Password :</td>
-<td><input type="password" name="pwd" size="50" required></td>
-</tr>
-<tr>
-<td>Age :</td>
-<td><input type="text" name="age" size="50" required></td>
-</tr>
-</table>
-<input type="submit" value="SUBMIT" name="submit">
-</fieldset>
-</form>
-</center>
-</body>
-<div id="footer">
-Copyright @ CMRIT_2024
-</div>
-</html>
-
-__________________________
 # Login.html
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login Form</title>
-</head>
 <script>
-function LoginValidate(){
-var enteremail=document.getElementById('email').value;
-var enterpassword=document.getElementById('pwd').value;
-var getEmail=localStorage.getItem('email');
-var getPwd=localStorage.getItem('password');
-if(enteremail==getEmail)
-{
- if(enterpassword==getPwd)
- {
-  alert("login success");
-  window.location="/welcome";
-  return false;
- }
- else
- {
-  alert("wrong password");
- }
-}
-else
-{
- alert("invalid details");
-}
+function login(){
+  let m = document.f.email.value;
+  let storedEmail = localStorage.getItem("email");
+  if(m == storedEmail){
+    alert("Login Success");
+    return true;
+  }else{
+    alert("Invalid Email");
+    return false;
+  }
 }
 </script>
-<body style="text-align:center">
-<div class="main">
-<h1>Login Form</h1>
-<h3>Enter your login credentials</h3>
-<form>
-<label>Email:</label>
-<input type="text" name="first" id="email" placeholder="Enter your Username" required>
-<br><br>
-<label>Password:</label>
-<input type="password" name="password" id="pwd" placeholder="Enter your Password" required>
-<br><br>
-<button type="submit" onclick="return LoginValidate()">Submit</button>
-<br><br>
-</form>
-<p>Not registered?
-<a href="/register" style="text-decoration:none,">
-Create an account
-</a>
-</p>
-</div>
-</body>
-</html>
-
-______________________________
-# Index.html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 3 Register and Login page</title>
-<style>
-a{
- background-color: blue;
- color: #f0e8e8;
- margin: 1px solid;
- font-size: 50px;
-}
-body{
- position: relative;
- text-align: center;
- top: 200px;
-}
-</style>
 </head>
 <body>
-<div>
-<a href="/login">Login</a>
-<a href="/register">Register</a>
-</div>
+<h2>Login</h2>
+<form name="f" action="/profile" onsubmit="return login()">
+  Email: <input type="text" name="email"><br><br>
+  <input type="submit" value="Login">
+</form>
 </body>
 </html>
 
-____________________________
-# Commands
+______________________________________________
+# Server.js
 
-node -v
-npm init -y
+const express = require('express');
+const app = express();
+app.use(express.urlencoded({extended:true}));
+app.get('/', (req,res)=> res.sendFile(__dirname+'/register.html'));
+app.get('/login', (req,res)=> res.sendFile(__dirname+'/login.html'));
+app.get('/profile', (req,res)=> res.sendFile(__dirname+'/profile.html'));
+app.post('/login', (req,res)=> res.redirect('/profile'));
+app.get('/logout', (req,res)=> res.redirect('/'));
+app.listen(3000, ()=> console.log("Server running"));
+
+_____________________________________________
+# Profile.html
+
+<html>
+<body>
+<h2>Welcome User</h2>
+<a href="/logout" onclick="localStorage.clear()">Logout</a>
+</body>
+</html>
+
+___________________________________________
+# Register.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validate(){
+  let f = document.f.name.value;
+  let p = document.f.phone.value;
+  let m = document.f.email.value;
+    for(let i in f){
+    let ch = f.charCodeAt(i);
+    if(ch<65 || ch>90 && ch<97 || ch>122){
+      alert("Invalid Name"); return false;
+    }
+  }
+   if(p.length != 10){
+    alert("Phone must be 10 digits"); return false;
+  }
+  var reg = /^([a-zA-Z][a-zA-Z0-9\.-]+)@([a-zA-Z-]+).([a-z]{2,8})(.[a-z]{2,8})?$/;
+  if(!reg.test(m)){
+    alert("Invalid Email"); return false;
+  }
+  localStorage.setItem("name",f);
+  localStorage.setItem("phone",p);
+  localStorage.setItem("email",m);
+  alert("Registration Successful");
+  return true;
+}
+</script>
+</head>
+<body>
+<h2>Register</h2>
+<form name="f" action="/login" onsubmit="return validate()">
+  Name: <input type="text" name="name"><br><br>
+  Phone: <input type="text" name="phone"><br><br>
+  Email: <input type="text" name="email"><br><br>
+  <input type="submit" value="Register">
+</form>
+</body>
+</html>
+
+________________________________
+# Output:
 npm install express
 node server.js
+
