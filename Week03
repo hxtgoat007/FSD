@@ -1,4 +1,4 @@
-registration.html
+# registration.html
 
 <!DOCTYPE html>
 <html>
@@ -68,13 +68,19 @@ function validate(){
 <a href="registration.html">Register</a>
 </body>
 </html>
-Success.html
+
+________________________________________________
+# Success.html
+
 <html>
 <body>
 <h2>Registration Successful</h2>
 </body>
 </html>
-Success2.html
+
+_______________________________________________
+# Success2.html
+
 <html>
 <body>
 <h2>Login Successful</h2>
