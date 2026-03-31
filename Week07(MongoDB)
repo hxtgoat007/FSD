@@ -130,7 +130,10 @@ app.post("/verify", (req,res) =>   // Verify Token
   res.json({ ok:false });
  }
 });
-app.listen(3001, () => console.log("Server running on port 3001"));
+app.listen(3001, () => {
+    console.log("Server running on port 3001");
+    console.log("Open: http://localhost:3001");
+});
 
 ___________________________________________
 # output
