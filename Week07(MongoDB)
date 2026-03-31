@@ -140,4 +140,5 @@ ___________________________________________
 
 npm init -y
 npm install express mongodb jsonwebtoken
-node server.js
+mongod
+npm start
