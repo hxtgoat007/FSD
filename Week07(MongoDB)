@@ -131,3 +131,10 @@ app.post("/verify", (req,res) =>   // Verify Token
  }
 });
 app.listen(3001, () => console.log("Server running on port 3001"));
+
+___________________________________________
+# output
+
+npm init -y
+npm install express mongodb jsonwebtoken
+node server.js
