@@ -15,10 +15,6 @@ function validate(){
   if(p.length!=10){
     alert("Phone must be 10 digits"); return false;
   }
-   //if(!m.includes("@")){
-   //alert("Invalid Email"); return false;
-  //}
-  //return true;
 let mail = document.frm.mail.value;
 let at = mail.indexOf("@");
 let dot = mail.indexOf(".");
