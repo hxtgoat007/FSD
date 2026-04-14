@@ -46,7 +46,7 @@ Login.html
 <title>Login</title>
 <script>
 function validate(){
-  let p = document.f.pwd.value;
+  let p = document.frm.pwd.value;
   if(p.length>8){
     alert("Max 8 characters only"); return false;
   }
