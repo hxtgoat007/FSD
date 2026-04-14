@@ -37,7 +37,7 @@ app.get('/login', (req,res)=> res.sendFile(__dirname+'/login.html'));
 app.get('/profile', (req,res)=> res.sendFile(__dirname+'/profile.html'));
 app.post('/login', (req,res)=> res.redirect('/profile'));
 app.get('/logout', (req,res)=> res.redirect('/'));
-app.listen(3000, ()=> console.log("Server running"));
+app.listen(3000, ()=> console.log("Server running at http://localhost:3000/"));
 
 _____________________________________________
 # Profile.html
